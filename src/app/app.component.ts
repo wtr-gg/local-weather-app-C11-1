@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { ICurrentWeather } from './icurrent-weather';
 import { WeatherService } from './weather.service';
+import { ICurrentWeather } from './icurrent-weather';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'] 
 })
 export class AppComponent {
   title = 'local-weather-app';
@@ -17,12 +18,15 @@ export class AppComponent {
     temperature: 0,
     description: ''
   }
-  constructor(private weatherService: WeatherService){}
+  constructor(private weatherService: WeatherService) {}
 
   doSearch(searchValue: string){
     const userInput = searchValue.split(',')
-                        .map(s => s.trim() );
+                          .map(s => s.trim());
 
-    this.weatherService.getCurrentWeather(userInput[0], userInput.length > 1 ? userInput[1] : undefined ).subscribe(data => this.currentWeather = data )
+    this.weatherService.getCurrentWeather(userInput[0],
+    userInput.length > 1 ? userInput[1] : undefined).
+    subscribe(data => this.currentWeather = data)
   }
+
 }
